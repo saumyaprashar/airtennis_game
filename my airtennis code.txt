@@ -1,0 +1,53 @@
+Dim xspeed As Integer
+Dim yspeed As Integer
+
+Private Sub Form_Load()
+xspeed = 20
+yspeed = 20
+End Sub
+
+Private Sub Command1_Click()
+Timer1.Enabled = True
+End Sub
+
+Private Sub Command2_Click()
+Line1.X1 = Line1.X1 - 500
+Line1.X2 = Line1.X2 - 500
+End Sub
+
+Private Sub Command3_Click()
+Line1.X1 = Line1.X1 + 500
+Line1.X2 = Line1.X2 + 500
+End Sub
+
+Private Sub Command4_Click()
+Timer1.Enabled = False
+End Sub
+
+Private Sub Timer1_Timer()
+
+Shape1.Left = Shape1.Left + xspeed
+Shape1.Top = Shape1.Top + yspeed
+
+If Shape1.Left > (Form1.Width - Shape1.Width - (Form1.Width - Form1.ScaleWidth)) Then
+xspeed = xspeed * -1
+End If
+
+If Shape1.Top > (Form1.Height - Shape1.Height - (Form1.Height - Form1.ScaleHeight)) Then
+yspeed = yspeed * -1
+End If
+
+If Shape1.Left > (Line1.X1 - 300) And Shape1.Left < (Line1.X2 + 300) And Shape1.Top = (Line1.Y1 - 500) Then
+yspeed = yspeed * -1
+End If
+
+If Shape1.Left < 0 Then
+xspeed = xspeed * -1
+End If
+
+If Shape1.Top < (Line2.Y1) Then
+yspeed = yspeed * -1
+End If
+
+End Sub
+
